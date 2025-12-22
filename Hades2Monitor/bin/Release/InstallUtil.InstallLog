@@ -1,0 +1,62 @@
+﻿
+Uruchamianie instalacji transakcyjnej.
+
+Rozpoczyna się faza instalacji procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza instalacji została ukończona pomyślnie i rozpoczyna się faza rezerwacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza rezerwacji została ukończona pomyślnie.
+
+Instalacja transakcyjna została ukończona.
+
+Uruchamianie instalacji transakcyjnej.
+
+Rozpoczyna się faza instalacji procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Podczas fazy instalacji wystąpił wyjątek.
+System.ComponentModel.Win32Exception: Określona usługa została oznaczona do usunięcia
+
+Rozpoczyna się faza wycofywania procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza wycofywania została ukończona pomyślnie.
+
+Instalacja transakcyjna została ukończona.
+
+Uruchamianie instalacji transakcyjnej.
+
+Rozpoczyna się faza instalacji procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Podczas fazy instalacji wystąpił wyjątek.
+System.ComponentModel.Win32Exception: Określona usługa została oznaczona do usunięcia
+
+Rozpoczyna się faza wycofywania procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza wycofywania została ukończona pomyślnie.
+
+Instalacja transakcyjna została ukończona.
+
+Uruchamianie instalacji transakcyjnej.
+
+Rozpoczyna się faza instalacji procesu instalacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza instalacji została ukończona pomyślnie i rozpoczyna się faza rezerwacji.
+Aby sprawdzić postęp zestawu C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.exe, zapoznaj się z zawartością pliku dziennika.
+Plik znajduje się w C:\_csharp\Hades2Monitor\Hades2Monitor\bin\Release\Hades2Monitor.InstallLog.
+
+Faza rezerwacji została ukończona pomyślnie.
+
+Instalacja transakcyjna została ukończona.
