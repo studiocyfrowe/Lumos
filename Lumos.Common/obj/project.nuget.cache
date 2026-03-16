@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rZqpdX0Lhi8=",
+  "dgSpecHash": "4jgv0pL1eSQ=",
   "success": true,
-  "projectFilePath": "C:\\_csharp\\Hades2Monitor\\Lumos.Common\\Lumos.Common.csproj",
+  "projectFilePath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Common\\Lumos.Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dominik\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.0\\microsoft.data.sqlite.core.10.0.0.nupkg.sha512",
     "C:\\Users\\dominik\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.0\\microsoft.extensions.dependencyinjection.10.0.0.nupkg.sha512",

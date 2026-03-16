@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vBnH1nDz09I=",
+  "dgSpecHash": "y+rycAYhaqk=",
   "success": true,
-  "projectFilePath": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
+  "projectFilePath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dominik\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",
     "C:\\Users\\dominik\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
@@ -15,9 +15,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Pakiet „LiveCharts 0.9.7” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1” zamiast platformy docelowej projektu „net8.0-windows7.0”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
-      "projectPath": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
+      "projectPath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
+      "filePath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
       "libraryId": "LiveCharts",
       "targetGraphs": [
         "net8.0-windows7.0"

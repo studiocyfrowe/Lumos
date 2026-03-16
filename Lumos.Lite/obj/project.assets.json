@@ -157,11 +157,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
+      "projectUniqueName": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
       "projectName": "Lumos.Lite",
-      "projectPath": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
+      "projectPath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\Lumos.Lite.csproj",
       "packagesPath": "C:\\Users\\dominik\\.nuget\\packages\\",
-      "outputPath": "C:\\_csharp\\Hades2Monitor\\Lumos.Lite\\obj\\",
+      "outputPath": "C:\\_csharp\\Hades2Monitor\\Hades2Monitor\\Lumos.Lite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

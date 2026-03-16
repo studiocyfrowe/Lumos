@@ -1,4 +1,2 @@
-/Hades2Monitor.ReportingAPI/venv
-/packages
-/.vs
-/LumosDashboard/node_modules
+packages
+.vs
