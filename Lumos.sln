@@ -3,18 +3,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LumosService", "Hades2Monitor\LumosService.csproj", "{62389F8A-6AB9-4CD6-B76D-F5C78446D782}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumos.Agent", "Lumos.Agent\Lumos.Agent.csproj", "{62389F8A-6AB9-4CD6-B76D-F5C78446D782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumos.Lite", "Lumos.Lite\Lumos.Lite.csproj", "{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lumos.Common", "Lumos.Common\Lumos.Common.csproj", "{079E07F4-1A13-44CC-BDB7-0E3D6C163304}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Debug|x64.ActiveCfg = Debug|x64
+		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Debug|x64.Build.0 = Debug|x64
 		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Release|x64.ActiveCfg = Release|x64
+		{62389F8A-6AB9-4CD6-B76D-F5C78446D782}.Release|x64.Build.0 = Release|x64
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE5CE604-9F8A-48D0-8CA5-B36BD18F98AA}.Release|x64.Build.0 = Release|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Debug|x64.Build.0 = Debug|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Release|x64.ActiveCfg = Release|Any CPU
+		{079E07F4-1A13-44CC-BDB7-0E3D6C163304}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
