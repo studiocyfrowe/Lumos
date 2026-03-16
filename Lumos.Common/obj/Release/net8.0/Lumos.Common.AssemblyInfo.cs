@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumos.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+439e6eda3a20bd2950f36550a68f8c7cd52a8890")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef19a7f715c57b869b379a65fa6edb80c46a8326")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumos.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumos.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

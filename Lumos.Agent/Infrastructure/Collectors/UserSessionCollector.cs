@@ -33,7 +33,6 @@ namespace Lumos.Agent.Collectors
                     var sessionInfo = Marshal.PtrToStructure<WTS_SESSION_INFO>(
                         new IntPtr(current));
 
-                    // Interesuje nas tylko aktywna sesja
                     if (sessionInfo.State == WTS_CONNECTSTATE_CLASS.WTSActive)
                     {
                         string user = QuerySessionString(

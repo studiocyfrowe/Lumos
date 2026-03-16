@@ -1,10 +1,11 @@
 ﻿using Lumos.Agent.Collectors;
-using Lumos.Agent.Application.Services;
-using Lumos.Agent.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.ServiceProcess;
 using System.Timers;
+using Lumos.Agent.Application.Helpers;
+using Lumos.Agent.Infrastructure.Interfaces;
+using Lumos.Agent.Domain;
 
 namespace Lumos.Agent
 {

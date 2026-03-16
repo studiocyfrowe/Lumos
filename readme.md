@@ -1,5 +1,7 @@
 # Lumos
 
+![Lumos - HP](image-1.png)
+
 **Lumos** to usługa systemu Windows odpowiedzialna za monitorowanie stanu komputera oraz zbieranie danych diagnostycznych o systemie.
 Usługa cyklicznie gromadzi informacje o wydajności i konfiguracji komputera, które mogą być wykorzystywane do diagnostyki, monitorowania lub integracji z innymi komponentami systemu Lumos.
 
@@ -21,11 +23,7 @@ Przykładowe zastosowania:
 
 ---
 
-# Architektura
-
-Projekt składa się z dwóch głównych komponentów.
-
-## 1. Agent (usługa Windows)
+# Agent (usługa Windows)
 
 **Agent** to usługa systemu Windows odpowiedzialna za zbieranie danych o komputerze.
 
@@ -39,7 +37,7 @@ Usługa działa w tle i w określonych odstępach czasu gromadzi informacje o sy
 
 Zebrane dane mogą być:
 
-* zapisywane lokalnie
+* zapisywane lokalnie w pliku bazy danych SQLite
 * wysyłane do zewnętrznych usług
 * wykorzystywane przez inne komponenty systemu Lumos do diagnostyki.
 
@@ -49,27 +47,6 @@ Zebrane dane mogą być:
 * monitorowanie stanu komputera
 * udostępnianie danych diagnostycznych
 * integracja z innymi usługami
-
----
-
-## 2. Lumos.Common (biblioteka współdzielona)
-
-**Lumos.Common** to biblioteka klas zawierająca współdzielone modele danych oraz narzędzia wykorzystywane w różnych komponentach systemu.
-
-Biblioteka umożliwia ponowne użycie tych samych struktur danych i logiki w wielu częściach projektu.
-
-### Zawartość biblioteki
-
-* modele danych systemowych
-* obiekty DTO
-* narzędzia pomocnicze
-* wspólne abstrakcje
-
-### Zalety
-
-* redukcja duplikacji kodu
-* spójne struktury danych w całym systemie
-* łatwiejsza integracja między komponentami
 
 ---
 
@@ -100,13 +77,10 @@ Agent może zbierać między innymi:
 # Struktura projektu
 
 ```
-Lumos
-│
-├─ Lumos.Agent
-│  Usługa Windows odpowiedzialna za zbieranie danych o systemie
-│
-└─ Lumos.Common
-   Wspólna biblioteka modeli i narzędzi
+Lumos:
+   - Lumos.Agent
+   Usługa Windows odpowiedzialna za zbieranie danych o systemie
+
 ```
 
 ---
@@ -151,11 +125,15 @@ Uruchom terminal jako administrator i wykonaj:
 sc create LumosAgent binPath= "C:\path\to\Lumos.Agent.exe"
 ```
 
+![services example](image-2.png)
+
 ### Uruchomienie usługi
 
 ```
 sc start LumosAgent
 ```
+
+![service start](image-3.png)
 
 ### Zatrzymanie usługi
 
@@ -163,11 +141,15 @@ sc start LumosAgent
 sc stop LumosAgent
 ```
 
+![service stop](image-4.png)
+
 ### Usunięcie usługi
 
 ```
 sc delete LumosAgent
 ```
+
+![service delete](image-5.png)
 
 ---
 

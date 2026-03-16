@@ -1,5 +1,5 @@
-﻿using Lumos.Agent.Domain.Providers;
-using Lumos.Agent.Models;
+﻿using Lumos.Agent.Domain;
+using Lumos.Agent.Domain.Providers;
 using System;
 
 namespace Lumos.Agent.Collectors

@@ -1,5 +1,5 @@
-﻿using Lumos.Agent.Infrastructure.Interfaces;
-using Lumos.Agent.Models;
+﻿using Lumos.Agent.Domain;
+using Lumos.Agent.Infrastructure.Interfaces;
 using System;
 using System.Management;
 

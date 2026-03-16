@@ -1,5 +1,4 @@
-﻿using Lumos.Agent.Infrastructure;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 namespace Lumos.Agent
 {

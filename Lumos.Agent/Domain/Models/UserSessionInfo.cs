@@ -1,0 +1,17 @@
+﻿using System;
+
+namespace Lumos.Agent.Models
+{
+    public class UserSessionInfo
+    {
+        public string SessionId { get; set; } = Guid.NewGuid().ToString();
+        public string UserName { get; set; }
+        public DateTime LoginTime { get; set; } = DateTime.UtcNow;
+        public string Domain { get; set; }
+
+        public override string ToString()
+            => string.IsNullOrEmpty(Domain)
+                ? UserName
+                : $"{Domain}\\{UserName}";
+    }
+}

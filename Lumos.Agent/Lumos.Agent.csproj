@@ -168,15 +168,34 @@
     <Compile Include="Application\Dependencies.cs" />
     <Compile Include="Application\Interfaces\IMemoryRAMManager.cs" />
     <Compile Include="Application\Services\MemoryRAMManager.cs" />
-    <Compile Include="Infrastructure\Collectors\DeviceInfoCollector.cs" />
-    <Compile Include="Infrastructure\Collectors\DiskInfoCollector.cs" />
-    <Compile Include="Infrastructure\Interfaces\BaseCollectorInterface.cs" />
-    <Compile Include="Infrastructure\Collectors\MemoryRAMCollector.cs" />
-    <Compile Include="Infrastructure\Collectors\ProcessorCPUCollector.cs" />
-    <Compile Include="Infrastructure\Collectors\UserSessionCollector.cs" />
+    <Compile Include="Dependencies.cs" />
     <Compile Include="Domain\Enums\DiskInterfaceEnum.cs" />
     <Compile Include="Domain\Enums\DiskStatusEnum.cs" />
     <Compile Include="Domain\Enums\DiskTypeEnum.cs" />
+    <Compile Include="Domain\Models\DeviceInfo.cs" />
+    <Compile Include="Domain\Models\DiskHealth.cs" />
+    <Compile Include="Domain\Models\DiskInfo.cs" />
+    <Compile Include="Domain\Models\DiskPerformanceSnapshot.cs" />
+    <Compile Include="Domain\Models\MemoryRAM.cs" />
+    <Compile Include="Domain\Models\ProcessorCPU.cs" />
+    <Compile Include="Domain\Models\UserSessionInfo.cs" />
+    <Compile Include="Domain\Models\WorkStation.cs" />
+    <Compile Include="Infrastructure\Collectors\DeviceInfoCollector.cs" />
+    <Compile Include="Infrastructure\Collectors\DiskInfoCollector.cs" />
+    <Compile Include="Infrastructure\Contexts\ApplicationDbContext.cs" />
+    <Compile Include="Infrastructure\DatabaseConfig.cs" />
+    <Compile Include="Infrastructure\Collectors\MemoryRAMCollector.cs" />
+    <Compile Include="Infrastructure\Collectors\ProcessorCPUCollector.cs" />
+    <Compile Include="Infrastructure\Collectors\UserSessionCollector.cs" />
+    <Compile Include="Infrastructure\Factories\QueryHelperFactory.cs" />
+    <Compile Include="Infrastructure\Interfaces\BaseCollectorInterface.cs" />
+    <Compile Include="Infrastructure\Interfaces\BaseRepositoryInterface.cs" />
+    <Compile Include="Infrastructure\Interfaces\Hades2MonitorContextInterface.cs" />
+    <Compile Include="Infrastructure\Interfaces\QueryHelperInterface.cs" />
+    <Compile Include="Infrastructure\Repositories\DeviceInfoRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\MemoryRAMRepository.cs" />
+    <Compile Include="Infrastructure\Repositories\ProcessorCPURepository.cs" />
+    <Compile Include="Infrastructure\Services\QueryHelper.cs" />
     <Compile Include="Lumos.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -218,7 +237,6 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
