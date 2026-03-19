@@ -153,6 +153,20 @@ sc delete LumosAgent
 
 ---
 
+# Odczyt danych SQLite (DBeaver) - przykład zapytania
+
+W programie DBeaver załadować plik bazy danych LumosDatabase.db. 
+Przykład zapytania
+
+```sql
+
+SELECT TotalGB, UsedGB, FreeGB, UsedPercent, LastScan
+FROM MemoryRamScans
+
+```
+
+![sql example](image-6.png)
+
 # Możliwe kierunki rozwoju
 
 Planowane rozszerzenia projektu:
