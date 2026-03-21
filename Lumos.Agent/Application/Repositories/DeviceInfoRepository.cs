@@ -1,19 +1,29 @@
-﻿using Lumos.Agent.Domain;
-using Lumos.Agent.Domain.Providers;
+﻿using Lumos.Agent.Application.Contexts;
+using Lumos.Agent.Application.Interfaces;
+using Lumos.Agent.Domain;
 using Lumos.Agent.Infrastructure.Interfaces;
+using Lumos.Agent.Infrastructure.Providers;
 using Lumos.Agent.Models;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Threading.Tasks;
 
-namespace Lumos.Agent.Repositories
+namespace Lumos.Agent.Application.Repositories
 {
     public class DeviceInfoRepository : BaseRepositoryInterface<DeviceInfo>
     {
-        private readonly ApplicationDbContext _context;
-        public DeviceInfoRepository(ApplicationDbContext context)
+        private readonly LumosContext _context;
+        private DeviceIdentityProvider identityProvider { get; set; }
+        private readonly BaseCollectorInterface<DeviceInfo> _deviceInfoCollector;
+
+        public DeviceInfoRepository(
+            LumosContext context, 
+            DeviceIdentityProvider identityProvider, 
+            BaseCollectorInterface<DeviceInfo> deviceInfoCollector)
         {
             _context = context;
+            this.identityProvider = identityProvider;
+            _deviceInfoCollector = deviceInfoCollector; 
         }
 
         public Task DeleteAsync(object value)
@@ -63,7 +73,7 @@ namespace Lumos.Agent.Repositories
                             @UserName, @Domain, SYSDATETIME()
                         );";
 
-                var MachineGuid = DeviceIdentityProvider.GetMachineGuid();
+                var MachineGuid = this.identityProvider.GetMachineGuid();
 
                 await _context.Query.StoreOrUpdateDatabase<int>(
                     sql,

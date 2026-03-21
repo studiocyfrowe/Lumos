@@ -1,24 +1,26 @@
-﻿using Lumos.Agent.Collectors;
+﻿using Lumos.Agent.Application.Contexts;
+using Lumos.Agent.Application.Helpers;
+using Lumos.Agent.Application.Interfaces;
+using Lumos.Agent.Collectors;
+using Lumos.Agent.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.ServiceProcess;
+using System.Threading;
 using System.Timers;
-using Lumos.Agent.Application.Helpers;
-using Lumos.Agent.Infrastructure.Interfaces;
-using Lumos.Agent.Domain;
 
 namespace Lumos.Agent
 {
     public partial class Lumos : ServiceBase
     {
-        private Timer _timer;
+        private System.Timers.Timer _timer;
         private readonly IServiceProvider _serviceProvider;
         private bool _isRunning;
 
         public Lumos(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            ServiceName = "LumosMService";
+            ServiceName = "LumosAgent";
             _serviceProvider = serviceProvider;
         }
 
@@ -31,10 +33,10 @@ namespace Lumos.Agent
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     scope.ServiceProvider
-                        .GetRequiredService<ApplicationDbContext>();
+                        .GetRequiredService<LumosContext>();
                 }
 
-                _timer = new Timer(10_000);
+                _timer = new System.Timers.Timer(10_000);
                 _timer.Elapsed += ExecuteTask;
                 _timer.AutoReset = false;
                 _timer.Start();
@@ -64,45 +66,36 @@ namespace Lumos.Agent
             OnStop();
         }
 
-        private async void ExecuteTask(object sender, ElapsedEventArgs e)
-        {
-            if (_isRunning)
-                return;
+        private int _isRunningFlag = 0;
 
-            _isRunning = true;
+        private void ExecuteTask(object sender, ElapsedEventArgs e)
+        {
+            _timer?.Stop();
+
+            if (Interlocked.Exchange(ref _isRunningFlag, 1) == 1)
+                return;
 
             try
             {
+                FileLogger.Log("[STATUS] Starting device scan");
+
                 using (var scope = _serviceProvider.CreateScope())
                 {
-                    var memoryRepo = scope.ServiceProvider
-                        .GetRequiredService<BaseRepositoryInterface<MemoryRAM>>();
+                    var scanWorkflow = scope.ServiceProvider
+                        .GetRequiredService<BaseWorkflowInterface>();
 
-                    var deviceRepo = scope.ServiceProvider
-                        .GetRequiredService<BaseRepositoryInterface<DeviceInfo>>();
-
-                    var processor = scope.ServiceProvider
-                        .GetRequiredService<BaseRepositoryInterface<ProcessorCPU>>();
-
-                    var device = DeviceInfoCollector.Collect();
-                    var user = UserSessionCollector.GetLoggedUser();
-
-                    await memoryRepo.InsertAsync(device);
-                    await memoryRepo.DeleteAsync(device);
-
-                    await processor.InsertAsync(device);
-                    await processor.DeleteAsync(device);
-
-                    FileLogger.Log($"[STATUS] Station data has been updated: {device.MachineName}");
+                    scanWorkflow.ExecuteTask();
                 }
+
+                FileLogger.Log("[STATUS] Scanning the device has been finished");
             }
             catch (Exception ex)
             {
-                FileLogger.Log($"[ERROR] Task error: {ex}");
+                FileLogger.Log($"[ERROR] Scan error: {ex.Message}\n{ex.StackTrace}");
             }
             finally
             {
-                _isRunning = false;
+                Interlocked.Exchange(ref _isRunningFlag, 0);
                 _timer?.Start();
             }
         }

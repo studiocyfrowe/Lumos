@@ -1,6 +1,4 @@
 ﻿using Lumos.Agent.Application;
-using Lumos.Agent.Application.Interfaces;
-using Lumos.Agent.Application.Services;
 using Lumos.Agent.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,19 +1,28 @@
-﻿using Lumos.Agent.Domain;
-using Lumos.Agent.Domain.Providers;
-using Lumos.Agent.Infrastructure.Collectors;
+﻿using Lumos.Agent.Application.Contexts;
+using Lumos.Agent.Application.Interfaces;
+using Lumos.Agent.Domain;
 using Lumos.Agent.Infrastructure.Interfaces;
+using Lumos.Agent.Infrastructure.Providers;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Threading.Tasks;
 
-namespace Lumos.Agent.Repositories
+namespace Lumos.Agent.Application.Repositories
 {
     public class ProcessorCPURepository : BaseRepositoryInterface<ProcessorCPU>
     {
-        private readonly ApplicationDbContext _context;
-        public ProcessorCPURepository(ApplicationDbContext context)
+        private readonly LumosContext _context;
+        private DeviceIdentityProvider identityProvider { get; set; }
+        private readonly BaseCollectorInterface<ProcessorCPU> _processorCPUCollector;
+
+        public ProcessorCPURepository(
+            LumosContext context, 
+            DeviceIdentityProvider identityProvider, 
+            BaseCollectorInterface<ProcessorCPU> processorCPUCollector)
         {
             _context = context;
+            this.identityProvider = identityProvider;
+            _processorCPUCollector = processorCPUCollector;
         }
 
         public async Task InsertAsync(object entity)
@@ -26,8 +35,8 @@ namespace Lumos.Agent.Repositories
 
             var device = (DeviceInfo)entity;
 
-            var miachineGuid = DeviceIdentityProvider.GetMachineGuid();
-            var processor = new ProcessorCPUCollector().Collect();
+            var miachineGuid = this.identityProvider.GetMachineGuid();
+            var processor = _processorCPUCollector.Collect();
 
             const string sql = @"
                 INSERT INTO ProcessorCPUs (MachineGuid, Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeedMHz, LoadPercent, DeviceName)
@@ -70,7 +79,7 @@ namespace Lumos.Agent.Repositories
                 );
             ";
 
-            var MachineGuid = DeviceIdentityProvider.GetMachineGuid();
+            var MachineGuid = this.identityProvider.GetMachineGuid();
 
             await _context.Query.StoreOrUpdateDatabase<int>(
                 sql,

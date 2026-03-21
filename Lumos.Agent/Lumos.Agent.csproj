@@ -165,9 +165,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Contexts\LumosContext.cs" />
     <Compile Include="Application\Dependencies.cs" />
-    <Compile Include="Application\Interfaces\IMemoryRAMManager.cs" />
-    <Compile Include="Application\Services\MemoryRAMManager.cs" />
+    <Compile Include="Application\Interfaces\BaseWorkflowInterface.cs" />
+    <Compile Include="Application\Interfaces\LumosServiceContext.cs" />
+    <Compile Include="Application\Workflows\ScanAndSaveWorkflow.cs" />
     <Compile Include="Dependencies.cs" />
     <Compile Include="Domain\Enums\DiskInterfaceEnum.cs" />
     <Compile Include="Domain\Enums\DiskStatusEnum.cs" />
@@ -182,20 +184,17 @@
     <Compile Include="Domain\Models\WorkStation.cs" />
     <Compile Include="Infrastructure\Collectors\DeviceInfoCollector.cs" />
     <Compile Include="Infrastructure\Collectors\DiskInfoCollector.cs" />
-    <Compile Include="Infrastructure\Contexts\ApplicationDbContext.cs" />
-    <Compile Include="Infrastructure\DatabaseConfig.cs" />
+    <Compile Include="Domain\DatabaseConfig.cs" />
     <Compile Include="Infrastructure\Collectors\MemoryRAMCollector.cs" />
     <Compile Include="Infrastructure\Collectors\ProcessorCPUCollector.cs" />
-    <Compile Include="Infrastructure\Collectors\UserSessionCollector.cs" />
-    <Compile Include="Infrastructure\Factories\QueryHelperFactory.cs" />
+    <Compile Include="Application\Factories\QueryHelperFactory.cs" />
     <Compile Include="Infrastructure\Interfaces\BaseCollectorInterface.cs" />
-    <Compile Include="Infrastructure\Interfaces\BaseRepositoryInterface.cs" />
-    <Compile Include="Infrastructure\Interfaces\Hades2MonitorContextInterface.cs" />
-    <Compile Include="Infrastructure\Interfaces\QueryHelperInterface.cs" />
-    <Compile Include="Infrastructure\Repositories\DeviceInfoRepository.cs" />
-    <Compile Include="Infrastructure\Repositories\MemoryRAMRepository.cs" />
-    <Compile Include="Infrastructure\Repositories\ProcessorCPURepository.cs" />
-    <Compile Include="Infrastructure\Services\QueryHelper.cs" />
+    <Compile Include="Application\Interfaces\BaseRepositoryInterface.cs" />
+    <Compile Include="Application\Interfaces\QueryHelperInterface.cs" />
+    <Compile Include="Application\Repositories\DeviceInfoRepository.cs" />
+    <Compile Include="Application\Repositories\MemoryRAMRepository.cs" />
+    <Compile Include="Application\Repositories\ProcessorCPURepository.cs" />
+    <Compile Include="Application\Helpers\QueryHelper.cs" />
     <Compile Include="Lumos.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,7 +212,7 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Providers\DeviceIdentityProvider.cs" />
+    <Compile Include="Infrastructure\Providers\DeviceIdentityProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

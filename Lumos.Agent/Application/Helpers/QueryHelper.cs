@@ -1,4 +1,4 @@
-﻿using Lumos.Agent.Helpers.Interfaces;
+﻿using Lumos.Agent.Application.Interfaces;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;

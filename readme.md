@@ -181,7 +181,29 @@ Planowane rozszerzenia projektu:
 
 # Zrzuty ekranu
 
-![Lumos Text Output](image.png)
+```txt
+
+[INFO] 2026-03-21T16:03:24.6400224Z [STATUS] Lumos started
+[INFO] 2026-03-21T16:03:34.6585814Z [STATUS] Starting device scan
+[INFO] 2026-03-21T16:03:34.7388994Z [STATUS] Device data: <PC_NAME> has been collected
+[INFO] 2026-03-21T16:03:35.0210046Z [STATUS] Memory RAM data has been updated
+[INFO] 2026-03-21T16:03:37.0557829Z [STATUS] Processor CPU data has been updated
+[INFO] 2026-03-21T16:03:37.0690217Z [STATUS] Station data has been updated
+[INFO] 2026-03-21T16:03:37.0753648Z [STATUS] Scanning the device has been finished
+[INFO] 2026-03-21T16:03:47.0877427Z [STATUS] Starting device scan
+[INFO] 2026-03-21T16:03:47.1132063Z [STATUS] Device data: <PC_NAME> has been collected
+[INFO] 2026-03-21T16:03:47.1906572Z [STATUS] Memory RAM data has been updated
+[INFO] 2026-03-21T16:03:48.3786838Z [STATUS] Processor CPU data has been updated
+[INFO] 2026-03-21T16:03:48.4033932Z [STATUS] Station data has been updated
+[INFO] 2026-03-21T16:03:48.4043893Z [STATUS] Scanning the device has been finished
+[INFO] 2026-03-21T16:03:58.4078696Z [STATUS] Starting device scan
+[INFO] 2026-03-21T16:03:58.4591862Z [STATUS] Device data: <PC_NAME> has been collected
+[INFO] 2026-03-21T16:03:58.5384428Z [STATUS] Memory RAM data has been updated
+[INFO] 2026-03-21T16:03:59.7379011Z [STATUS] Processor CPU data has been updated
+[INFO] 2026-03-21T16:03:59.7529367Z [STATUS] Station data has been updated
+[INFO] 2026-03-21T16:03:59.7539352Z [STATUS] Scanning the device has been finished
+
+```
 
 ---
 

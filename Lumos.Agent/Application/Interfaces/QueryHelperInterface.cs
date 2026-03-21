@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Lumos.Agent.Helpers.Interfaces
+namespace Lumos.Agent.Application.Interfaces
 {
     public interface QueryHelperInterface
     {

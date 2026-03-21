@@ -7,6 +7,7 @@ namespace Lumos.Agent.Infrastructure.Collectors
 {
     public class ProcessorCPUCollector : BaseCollectorInterface<ProcessorCPU>
     {
+        public ProcessorCPUCollector() { }
         public ProcessorCPU Collect()
         {
             var searcher = new ManagementObjectSearcher(

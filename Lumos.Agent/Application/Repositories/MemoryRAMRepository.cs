@@ -1,19 +1,27 @@
-﻿using Lumos.Agent.Collectors;
+﻿using Lumos.Agent.Application.Contexts;
+using Lumos.Agent.Application.Interfaces;
 using Lumos.Agent.Domain;
-using Lumos.Agent.Domain.Providers;
 using Lumos.Agent.Infrastructure.Interfaces;
+using Lumos.Agent.Infrastructure.Providers;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Threading.Tasks;
 
-namespace Lumos.Agent.Repositories
+namespace Lumos.Agent.Application.Repositories
 {
     public class MemoryRAMRepository : BaseRepositoryInterface<MemoryRAM>
     {
-        private readonly ApplicationDbContext _context;
-        public MemoryRAMRepository(ApplicationDbContext context)
+        private readonly LumosContext _context;
+        private DeviceIdentityProvider identityProvider { get; set; }
+        private readonly BaseCollectorInterface<MemoryRAM> _memoryRAMCollector;
+
+        public MemoryRAMRepository(LumosContext context, 
+            DeviceIdentityProvider identityProvider,
+            BaseCollectorInterface<MemoryRAM> memoryRAMCollector)
         {
             _context = context;
+            this.identityProvider = identityProvider;
+            _memoryRAMCollector = memoryRAMCollector;
         }
 
         public async Task InsertAsync(object entity)
@@ -26,8 +34,8 @@ namespace Lumos.Agent.Repositories
 
             var device = (DeviceInfo)entity;
 
-            var memory = new MemoryRAMCollector().Collect();
-            var machineGuid = DeviceIdentityProvider.GetMachineGuid();
+            var memory = _memoryRAMCollector.Collect();
+            var machineGuid = this.identityProvider.GetMachineGuid();
 
             const string sql = @"
                 INSERT INTO MemoryRamScans
@@ -63,15 +71,20 @@ namespace Lumos.Agent.Repositories
                     FROM MemoryRamScans
                     WHERE MachineGuid = @MachineGuid
                 )
-                DELETE FROM Ranked
-                WHERE rn > 60;
+                DELETE FROM MemoryRamScans
+                WHERE Id IN
+                (
+                    SELECT Id
+                    FROM Ranked
+                    WHERE rn > 60
+                );
             ";
 
-            var MachineGuid = DeviceIdentityProvider.GetMachineGuid();
+            var machineGuid = this.identityProvider.GetMachineGuid();
 
             await _context.Query.StoreOrUpdateDatabase<int>(
                 sql,
-                new SqliteParameter("@MachineGuid", MachineGuid.ToString())
+                new SqliteParameter("@MachineGuid", machineGuid.ToString())
             );
         }
     }

@@ -1,11 +1,15 @@
 ﻿using Microsoft.Win32;
 using System;
 
-namespace Lumos.Agent.Domain.Providers
+namespace Lumos.Agent.Infrastructure.Providers
 {
-    public static class DeviceIdentityProvider
+    public class DeviceIdentityProvider
     {
-        public static Guid GetMachineGuid()
+        public DeviceIdentityProvider()
+        {
+        }
+
+        public Guid GetMachineGuid()
         {
             using (var localMachineX64View =
                 RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Lumos.Agent.Infrastructure.Interfaces
+namespace Lumos.Agent.Application.Interfaces
 {
     public interface BaseRepositoryInterface<T> where T : class
     {

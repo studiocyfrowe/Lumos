@@ -1,7 +1,8 @@
-﻿using Lumos.Agent.Domain;
-using Lumos.Agent.Infrastructure.Factories;
+﻿using Lumos.Agent.Collectors;
+using Lumos.Agent.Domain;
+using Lumos.Agent.Infrastructure.Collectors;
 using Lumos.Agent.Infrastructure.Interfaces;
-using Lumos.Agent.Repositories;
+using Lumos.Agent.Infrastructure.Providers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lumos.Agent.Infrastructure
@@ -10,14 +11,11 @@ namespace Lumos.Agent.Infrastructure
     {
         public static IServiceCollection AddCommonInfrastructure(this IServiceCollection services)
         {
-            services.AddSingleton(DatabaseConfig.GetConnectionString());
+            services.AddScoped<BaseCollectorInterface<DeviceInfo>, DeviceInfoCollector>();
+            services.AddScoped<BaseCollectorInterface<MemoryRAM>, MemoryRAMCollector>();
+            services.AddScoped<BaseCollectorInterface<ProcessorCPU>, ProcessorCPUCollector>();
 
-            services.AddSingleton<IQueryHelperFactory, QueryHelperFactory>();
-
-            services.AddScoped<ApplicationDbContext>();
-            services.AddScoped<BaseRepositoryInterface<MemoryRAM>, MemoryRAMRepository>();
-            services.AddScoped<BaseRepositoryInterface<DeviceInfo>, DeviceInfoRepository>();
-            services.AddScoped<BaseRepositoryInterface<ProcessorCPU>, ProcessorCPURepository>();
+            services.AddScoped<DeviceIdentityProvider>();
 
             return services;
         }

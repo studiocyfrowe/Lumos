@@ -7,6 +7,8 @@ namespace Lumos.Agent.Collectors
 {
     public class MemoryRAMCollector : BaseCollectorInterface<MemoryRAM>
     {
+        public MemoryRAMCollector() { }
+
         public MemoryRAM Collect()
         {
             var searcher = new ManagementObjectSearcher(

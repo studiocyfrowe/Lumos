@@ -1,5 +1,10 @@
-﻿using Lumos.Agent.Application.Interfaces;
-using Lumos.Agent.Application.Services;
+﻿using Lumos.Agent.Application.Contexts;
+using Lumos.Agent.Application.Interfaces;
+using Lumos.Agent.Application.Repositories;
+using Lumos.Agent.Application.Workflows;
+using Lumos.Agent.Domain;
+using Lumos.Agent.Infrastructure;
+using Lumos.Agent.Infrastructure.Factories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lumos.Agent.Application
@@ -8,7 +13,18 @@ namespace Lumos.Agent.Application
     {
         public static IServiceCollection AddAgentApplication(this IServiceCollection services)
         {
-            services.AddScoped<IMemoryRAMManager, MemoryRAMManager>();
+            services.AddSingleton(DatabaseConfig.GetConnectionString());
+
+            services.AddSingleton<IQueryHelperFactory, QueryHelperFactory>();
+
+            services.AddScoped<LumosContext>();
+
+            services.AddScoped<BaseRepositoryInterface<MemoryRAM>, MemoryRAMRepository>();
+            services.AddScoped<BaseRepositoryInterface<DeviceInfo>, DeviceInfoRepository>();
+            services.AddScoped<BaseRepositoryInterface<ProcessorCPU>, ProcessorCPURepository>();
+
+            services.AddScoped<BaseWorkflowInterface, ScanAndSaveWorkflow>();
+
             return services;
         }
     }
