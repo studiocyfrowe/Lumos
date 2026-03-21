@@ -1,2 +1,4 @@
 packages
 .vs
+/Lumos.Common
+.gitignore

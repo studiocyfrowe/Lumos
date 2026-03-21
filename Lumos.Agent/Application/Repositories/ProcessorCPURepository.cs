@@ -1,4 +1,5 @@
 ﻿using Lumos.Agent.Domain;
+using Lumos.Agent.Domain.Providers;
 using Lumos.Agent.Infrastructure.Collectors;
 using Lumos.Agent.Infrastructure.Interfaces;
 using Microsoft.Data.Sqlite;
@@ -25,15 +26,17 @@ namespace Lumos.Agent.Repositories
 
             var device = (DeviceInfo)entity;
 
+            var miachineGuid = DeviceIdentityProvider.GetMachineGuid();
             var processor = new ProcessorCPUCollector().Collect();
 
             const string sql = @"
-                INSERT INTO ProcessorCPUs (Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeedMHz, LoadPercent, DeviceName)
-                VALUES (@Name, @NumberOfCores, @NumberOfLogicalProcessors, @MaxClockSpeedMHz, @LoadPercent, @DeviceName);
+                INSERT INTO ProcessorCPUs (MachineGuid, Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeedMHz, LoadPercent, DeviceName)
+                VALUES (@MachineGuid, @Name, @NumberOfCores, @NumberOfLogicalProcessors, @MaxClockSpeedMHz, @LoadPercent, @DeviceName);
             ";
 
             await _context.Query.StoreOrUpdateDatabase<int>(
                 sql,
+                new SqliteParameter("@MachineGuid", miachineGuid.ToString()),
                 new SqliteParameter("@Name", processor.Name),
                 new SqliteParameter("@NumberOfCores", processor.NumberOfCores),
                 new SqliteParameter("@NumberOfLogicalProcessors", processor.NumberOfLogicalProcessors),
@@ -43,29 +46,36 @@ namespace Lumos.Agent.Repositories
             );
         }
 
-        public Task DeleteAsync(object value)
+        public async Task DeleteAsync(object value)
         {
-            throw new NotImplementedException();
-        }
+            string sql = @"
+               WITH Ranked AS
+                (
+                    SELECT
+                        Id,
+                        ROW_NUMBER() OVER
+                        (
+                            PARTITION BY MachineGuid
+                            ORDER BY LastScan DESC
+                        ) AS rn
+                    FROM ProcessorCPUs
+                    WHERE MachineGuid = @MachineGuid
+                )
+                DELETE FROM ProcessorCPUs
+                WHERE Id IN
+                (
+                    SELECT Id
+                    FROM Ranked
+                    WHERE rn > 60
+                );
+            ";
 
-        public Task UpsertAsync(params object[] entities)
-        {
-            throw new NotImplementedException();
-        }
+            var MachineGuid = DeviceIdentityProvider.GetMachineGuid();
 
-        Task BaseRepositoryInterface<ProcessorCPU>.InsertAsync(object entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        Task BaseRepositoryInterface<ProcessorCPU>.UpsertAsync(params object[] entities)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        Task BaseRepositoryInterface<ProcessorCPU>.DeleteAsync(object value)
-        {
-            throw new System.NotImplementedException();
+            await _context.Query.StoreOrUpdateDatabase<int>(
+                sql,
+                new SqliteParameter("@MachineGuid", MachineGuid.ToString())
+            );
         }
     }
 }

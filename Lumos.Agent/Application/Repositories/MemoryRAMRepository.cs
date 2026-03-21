@@ -74,25 +74,5 @@ namespace Lumos.Agent.Repositories
                 new SqliteParameter("@MachineGuid", MachineGuid.ToString())
             );
         }
-
-        public async Task UpsertAsync(params object[] entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task BaseRepositoryInterface<MemoryRAM>.InsertAsync(object entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        Task BaseRepositoryInterface<MemoryRAM>.UpsertAsync(params object[] entities)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        Task BaseRepositoryInterface<MemoryRAM>.DeleteAsync(object value)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

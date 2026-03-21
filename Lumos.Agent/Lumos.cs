@@ -39,11 +39,11 @@ namespace Lumos.Agent
                 _timer.AutoReset = false;
                 _timer.Start();
 
-                FileLogger.Log("Hades2Monitor started");
+                FileLogger.Log("[STATUS] Lumos started");
             }
             catch (Exception ex)
             {
-                FileLogger.Log($"Start error: {ex}");
+                FileLogger.Log($"[ERROR] Start error: {ex}");
                 throw;
             }
         }
@@ -53,13 +53,13 @@ namespace Lumos.Agent
             _timer?.Stop();
             _timer?.Dispose();
 
-            FileLogger.Log("Hades2Monitor stopped");
+            FileLogger.Log("[STATUS] Lumos stopped");
         }
 
         public void DebugStart()
         {
             OnStart(null);
-            Console.WriteLine("Hades2Monitor running in DEBUG mode. Press ENTER to stop...");
+            Console.WriteLine("[LOG] running in DEBUG mode. Press ENTER to stop...");
             Console.ReadLine();
             OnStop();
         }
@@ -78,23 +78,31 @@ namespace Lumos.Agent
                     var memoryRepo = scope.ServiceProvider
                         .GetRequiredService<BaseRepositoryInterface<MemoryRAM>>();
 
+                    var deviceRepo = scope.ServiceProvider
+                        .GetRequiredService<BaseRepositoryInterface<DeviceInfo>>();
+
+                    var processor = scope.ServiceProvider
+                        .GetRequiredService<BaseRepositoryInterface<ProcessorCPU>>();
+
                     var device = DeviceInfoCollector.Collect();
                     var user = UserSessionCollector.GetLoggedUser();
 
                     await memoryRepo.InsertAsync(device);
+                    await memoryRepo.DeleteAsync(device);
 
-                    FileLogger.Log($"Updated station: {device.MachineName}");
+                    await processor.InsertAsync(device);
+                    await processor.DeleteAsync(device);
+
+                    FileLogger.Log($"[STATUS] Station data has been updated: {device.MachineName}");
                 }
             }
             catch (Exception ex)
             {
-                FileLogger.Log($"Task error: {ex}");
+                FileLogger.Log($"[ERROR] Task error: {ex}");
             }
             finally
             {
                 _isRunning = false;
-
-                // 🔥 restart timera ręcznie (bo AutoReset = false)
                 _timer?.Start();
             }
         }

@@ -35,6 +35,19 @@ public class ApplicationDbContext : Hades2MonitorContextInterface
                 UsedPercent REAL NOT NULL,
                 LastScan TEXT NOT NULL
             );
+
+            CREATE TABLE IF NOT EXISTS ProcessorCPUs
+            (
+                Id INT IDENTITY(1,1) PRIMARY KEY,
+                MachineGuid UNIQUEIDENTIFIER NOT NULL,
+                Name NVARCHAR(255) NOT NULL,
+                NumberOfCores INT NOT NULL,
+                NumberOfLogicalProcessors INT NOT NULL,
+                MaxClockSpeedMHz INT NOT NULL,
+                LoadPercent INT NOT NULL,
+                DeviceName NVARCHAR(255) NULL,
+                LastScan DATETIME2 NOT NULL DEFAULT SYSDATETIME()
+            );
         ";
 
         command.ExecuteNonQuery();
