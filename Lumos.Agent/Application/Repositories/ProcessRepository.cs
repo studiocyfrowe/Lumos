@@ -31,10 +31,37 @@ namespace Lumos.Agent.Application.Repositories
             var machineGuid = this.identityProvider.GetMachineGuid();
 
             const string sql = @"
-                INSERT INTO Processes
+                CREATE TEMP TABLE TempProcesses (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    MachineGuid TEXT NOT NULL,
+                    ProcessId INTEGER NOT NULL,
+                    ProcessName TEXT NOT NULL,
+                    MemoryUsageMB REAL NOT NULL,
+                    CpuUsagePercent REAL NOT NULL,
+                    StartTime TEXT NULL,
+                    LastScan TEXT NOT NULL DEFAULT (datetime('now'))
+                );
+
+                INSERT INTO TempProcesses
                     (MachineGuid, ProcessId, ProcessName, MemoryUsageMB, CpuUsagePercent, StartTime, LastScan)
                 VALUES
-                    (@MachineGuid, @ProcessId, @ProcessName, @MemoryUsageMB, @CpuUsagePercent, @StartTime, @LastScan)
+                    (@MachineGuid, @ProcessId, @ProcessName, @MemoryUsageMB, @CpuUsagePercent, @StartTime, @LastScan);
+
+                INSERT INTO Processes
+                    (MachineGuid, ProcessId, ProcessName, MemoryUsageMB, CpuUsagePercent, StartTime, LastScan)
+                SELECT
+                    MachineGuid,
+                    ProcessId,
+                    ProcessName,
+                    MemoryUsageMB,
+                    CpuUsagePercent,
+                    StartTime,
+                    LastScan
+                FROM TempProcesses
+                ORDER BY MemoryUsageMB DESC
+                LIMIT 20;
+
+                DROP TABLE TempProcesses;
             ";
 
             foreach (var process in processes.Processes)
