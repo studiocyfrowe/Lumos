@@ -3,7 +3,6 @@ using Lumos.Agent.Application.Interfaces;
 using Lumos.Agent.Domain;
 using Lumos.Agent.Infrastructure.Interfaces;
 using Lumos.Agent.Infrastructure.Providers;
-using Lumos.Agent.Models;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Threading.Tasks;
@@ -46,12 +45,6 @@ namespace Lumos.Agent.Application.Repositories
                         nameof(entity)
                     );
 
-                if (!(entity is UserSessionInfo user))
-                    throw new ArgumentException(
-                        "DeviceInfoRepository expects UserSessionInfo as entity",
-                        nameof(entity)
-                    );
-
                 string sql = @"
                     MERGE Workstations AS target
                     USING (SELECT @MachineGuid AS MachineGuid) AS source
@@ -79,11 +72,11 @@ namespace Lumos.Agent.Application.Repositories
                     sql,
                     new SqliteParameter("@MachineGuid", "Test"),
                     new SqliteParameter("@MachineName", device.MachineName),
-                    new SqliteParameter("@OSVersion", device.OSVersion),
-                    new SqliteParameter("@UserName",
-                        user?.UserName ?? (object)DBNull.Value),
-                    new SqliteParameter("@Domain",
-                        user?.Domain ?? (object)DBNull.Value)
+                    new SqliteParameter("@OSVersion", device.OSVersion)
+                    //new SqliteParameter("@UserName",
+                    //    user?.UserName ?? (object)DBNull.Value),
+                    //new SqliteParameter("@Domain",
+                    //    user?.Domain ?? (object)DBNull.Value)
                 );
             }
         }

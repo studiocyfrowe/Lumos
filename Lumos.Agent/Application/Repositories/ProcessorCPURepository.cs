@@ -35,7 +35,7 @@ namespace Lumos.Agent.Application.Repositories
 
             var device = (DeviceInfo)entity;
 
-            var miachineGuid = this.identityProvider.GetMachineGuid();
+            var machineGuid = this.identityProvider.GetMachineGuid();
             var processor = _processorCPUCollector.Collect();
 
             const string sql = @"
@@ -45,7 +45,7 @@ namespace Lumos.Agent.Application.Repositories
 
             await _context.Query.StoreOrUpdateDatabase<int>(
                 sql,
-                new SqliteParameter("@MachineGuid", miachineGuid.ToString()),
+                new SqliteParameter("@MachineGuid", machineGuid.ToString()),
                 new SqliteParameter("@Name", processor.Name),
                 new SqliteParameter("@NumberOfCores", processor.NumberOfCores),
                 new SqliteParameter("@NumberOfLogicalProcessors", processor.NumberOfLogicalProcessors),
